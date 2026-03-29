@@ -1,0 +1,6 @@
+flask
+face-recognition
+opencv-python
+pandas
+openpyxl
+twilio

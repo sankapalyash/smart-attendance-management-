@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Attendance Analytics</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f9;
+text-align:center;
+}
+
+.container{
+width:800px;
+margin:auto;
+margin-top:40px;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Student Attendance Percentage</h2>
+
+<canvas id="studentChart"></canvas>
+
+<br><br>
+
+<h2>Overall Class Attendance</h2>
+
+<canvas id="overallChart"></canvas>
+
+<br><br>
+
+<a href="/teacher">Back to Dashboard</a>
+
+</div>
+
+<script>
+
+var students = {{ students|tojson }};
+var percentages = {{ percentages|tojson }};
+var overall = {{ overall }};
+
+var ctx = document.getElementById("studentChart").getContext("2d");
+
+new Chart(ctx,{
+type:'bar',
+data:{
+labels:students,
+datasets:[{
+label:'Attendance %',
+data:percentages,
+backgroundColor:'rgba(54,162,235,0.7)'
+}]
+},
+options:{
+animation:{
+duration:2000
+},
+scales:{
+y:{
+beginAtZero:true,
+max:100
+}
+}
+}
+});
+
+var ctx2 = document.getElementById("overallChart").getContext("2d");
+
+new Chart(ctx2,{
+type:'doughnut',
+data:{
+labels:['Overall Attendance','Remaining'],
+datasets:[{
+data:[overall,100-overall],
+backgroundColor:['#28a745','#e9ecef']
+}]
+},
+options:{
+animation:{
+duration:2000
+}
+}
+});
+
+</script>
+
+</body>
+
+</html>

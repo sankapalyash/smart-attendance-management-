@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Teacher Dashboard</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:linear-gradient(-45deg,#4facfe,#00f2fe,#43e97b,#38f9d7);
+background-size:400% 400%;
+animation:gradientMove 10s ease infinite;
+}
+
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.header{
+text-align:center;
+padding:30px;
+color:white;
+font-size:28px;
+font-weight:bold;
+letter-spacing:1px;
+}
+
+.container{
+width:900px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+padding-bottom:40px;
+}
+
+.card-link{
+text-decoration:none;
+color:inherit;
+}
+
+.card{
+background:white;
+padding:35px;
+border-radius:12px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.25);
+transition:0.4s;
+cursor:pointer;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.05);
+box-shadow:0 15px 35px rgba(0,0,0,0.3);
+}
+
+.card i{
+font-size:40px;
+margin-bottom:15px;
+display:block;
+}
+
+.start i{color:#3498db;}
+.stop i{color:#e74c3c;}
+.view i{color:#2ecc71;}
+.analytics i{color:#f39c12;}
+.student i{color:#9b59b6;}
+.defaulter i{color:#c0392b;}
+
+.card-title{
+font-size:18px;
+font-weight:bold;
+}
+
+.attendance-box{
+grid-column:1 / span 3;
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+text-align:center;
+}
+
+input{
+padding:12px;
+width:250px;
+border-radius:6px;
+border:1px solid #ccc;
+margin-right:10px;
+}
+
+button{
+padding:12px 20px;
+border:none;
+background:#3498db;
+color:white;
+border-radius:6px;
+cursor:pointer;
+font-size:14px;
+}
+
+button:hover{
+background:#217dbb;
+}
+
+.logout{
+display:block;
+width:150px;
+margin:40px auto;
+text-align:center;
+padding:10px;
+background:black;
+color:white;
+text-decoration:none;
+border-radius:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+Teacher Dashboard
+</div>
+
+<div class="container">
+
+<div class="attendance-box">
+
+<h3>Start Attendance</h3>
+
+<form action="/take_attendance" method="POST">
+
+<input type="text" name="subject" placeholder="Enter Subject Name" required>
+
+<button type="submit">Start Camera</button>
+
+</form>
+
+</div>
+
+
+<a href="/stop_camera" class="card-link">
+<div class="card stop">
+<i class="fa-solid fa-camera"></i>
+<div class="card-title">Stop Camera</div>
+</div>
+</a>
+
+
+<a href="/view_attendance" class="card-link">
+<div class="card view">
+<i class="fa-solid fa-file-excel"></i>
+<div class="card-title">View Attendance</div>
+</div>
+</a>
+
+
+<a href="/attendance_analytics" class="card-link">
+<div class="card analytics">
+<i class="fa-solid fa-chart-column"></i>
+<div class="card-title">Attendance Analytics</div>
+</div>
+</a>
+
+
+<a href="/manage_students" class="card-link">
+<div class="card student">
+<i class="fa-solid fa-user-plus"></i>
+<div class="card-title">Manage Students</div>
+</div>
+</a>
+
+
+<a href="/defaulters" class="card-link">
+<div class="card defaulter">
+<i class="fa-solid fa-triangle-exclamation"></i>
+<div class="card-title">Defaulter List</div>
+</div>
+</a>
+
+</div>
+
+<a class="logout" href="/logout">Logout</a>
+
+</body>
+
+</html>

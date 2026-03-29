@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Attendance Records</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f9;
+text-align:center;
+}
+
+.container{
+width:700px;
+margin:auto;
+margin-top:50px;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:12px;
+border:1px solid #ddd;
+}
+
+th{
+background:#333;
+color:white;
+}
+
+a{
+text-decoration:none;
+color:white;
+background:#007bff;
+padding:8px 12px;
+border-radius:4px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Attendance Files</h2>
+
+<table>
+
+<tr>
+<th>File Name</th>
+<th>Open</th>
+</tr>
+
+{% for file in files %}
+
+<tr>
+
+<td>{{ file }}</td>
+
+<td>
+<a href="/download_attendance/{{ file }}">Open</a>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/teacher">Back</a>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Student Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f9;
+text-align:center;
+}
+
+.container{
+width:900px;
+margin:auto;
+margin-top:40px;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+table{
+width:100%;
+margin-top:20px;
+border-collapse:collapse;
+}
+
+th,td{
+padding:10px;
+border:1px solid #ddd;
+}
+
+th{
+background:#333;
+color:white;
+}
+
+.low{
+color:red;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Welcome {{ name }}</h2>
+
+<h3>My Attendance</h3>
+
+<table>
+
+<tr>
+<th>Subject</th>
+<th>Present</th>
+<th>Total Classes</th>
+<th>Attendance %</th>
+</tr>
+
+{% for i in range(subjects|length) %}
+
+<tr>
+
+<td>{{ subjects[i] }}</td>
+<td>{{ present_list[i] }}</td>
+<td>{{ total_list[i] }}</td>
+
+{% if percentages[i] < 75 %}
+<td class="low">{{ percentages[i] }} % (Low Attendance)</td>
+{% else %}
+<td>{{ percentages[i] }} %</td>
+{% endif %}
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br><br>
+
+<h3>Attendance Graph</h3>
+
+<canvas id="attendanceChart"></canvas>
+
+</div>
+
+<script>
+
+var subjects = {{ subjects|default([])|tojson }};
+var percentages = {{ percentages|default([])|tojson }};
+
+new Chart(
+document.getElementById("attendanceChart"),
+{
+type:'bar',
+data:{
+labels:subjects,
+datasets:[{
+label:'Attendance %',
+data:percentages,
+backgroundColor:'#3498db'
+}]
+},
+options:{
+scales:{
+y:{
+beginAtZero:true,
+max:100
+}
+}
+}
+}
+);
+
+</script>
+
+</body>
+
+</html> 

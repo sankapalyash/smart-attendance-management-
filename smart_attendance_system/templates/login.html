@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Smart Attendance System</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:linear-gradient(270deg,#667eea,#764ba2,#6dd5ed,#2193b0);
+background-size:600% 600%;
+animation:gradientMove 12s ease infinite;
+}
+
+/* animated gradient background */
+
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* login card */
+
+.login-container{
+
+background:rgba(255,255,255,0.15);
+padding:40px;
+border-radius:15px;
+backdrop-filter:blur(10px);
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+
+width:320px;
+text-align:center;
+
+animation:fadeIn 1.5s ease;
+}
+
+/* fade animation */
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+h2{
+color:white;
+margin-bottom:20px;
+}
+
+/* inputs */
+
+input,select{
+
+width:90%;
+padding:12px;
+margin:10px 0;
+
+border:none;
+border-radius:6px;
+
+font-size:15px;
+outline:none;
+
+}
+
+/* password wrapper */
+
+.password-box{
+position:relative;
+}
+
+.password-box input{
+width:90%;
+}
+
+.eye{
+
+position:absolute;
+right:25px;
+top:16px;
+cursor:pointer;
+}
+
+/* login button */
+
+button{
+
+width:100%;
+padding:12px;
+margin-top:15px;
+
+border:none;
+border-radius:6px;
+
+background:#ff7e5f;
+color:white;
+
+font-size:16px;
+
+cursor:pointer;
+
+transition:0.3s;
+
+}
+
+button:hover{
+
+background:#ff4b2b;
+transform:scale(1.05);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+<h2>Smart Attendance Login</h2>
+
+<form method="POST">
+
+<select name="role" required>
+
+<option value="">Select Role</option>
+<option value="admin">Admin</option>
+<option value="teacher">Teacher</option>
+<option value="student">Student</option>
+
+</select>
+
+<input 
+type="text" 
+name="username" 
+placeholder="Username"
+required
+>
+
+<div class="password-box">
+
+<input 
+type="password" 
+name="password"
+id="password"
+placeholder="Password"
+required
+>
+
+<span class="eye" onclick="togglePassword()">👁</span>
+
+</div>
+
+<button type="submit">Login</button>
+
+</form>
+
+</div>
+
+<script>
+
+function togglePassword(){
+
+var pass=document.getElementById("password");
+
+if(pass.type==="password"){
+pass.type="text";
+}else{
+pass.type="password";
+}
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Admin Dashboard</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(-45deg,#4facfe,#00f2fe,#43e97b,#38f9d7);
+background-size:400% 400%;
+animation:gradient 10s ease infinite;
+}
+
+@keyframes gradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+width:900px;
+margin:auto;
+margin-top:50px;
+background:white;
+padding:40px;
+border-radius:12px;
+box-shadow:0 15px 35px rgba(0,0,0,0.25);
+}
+
+h1{
+text-align:center;
+margin-bottom:30px;
+}
+
+form{
+text-align:center;
+margin-bottom:30px;
+}
+
+input{
+padding:12px;
+margin:8px;
+width:250px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+padding:12px 20px;
+border:none;
+background:#3498db;
+color:white;
+border-radius:6px;
+cursor:pointer;
+font-size:14px;
+}
+
+button:hover{
+background:#217dbb;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+padding:12px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+th{
+background:#333;
+color:white;
+}
+
+.delete{
+background:red;
+}
+
+.delete:hover{
+background:#c0392b;
+}
+
+.logout{
+display:block;
+width:120px;
+margin:30px auto;
+text-align:center;
+padding:10px;
+background:black;
+color:white;
+text-decoration:none;
+border-radius:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Admin Dashboard</h1>
+
+<h3>Add Teacher</h3>
+
+<form action="/add_teacher" method="POST">
+
+<input type="text" name="username" placeholder="Teacher Username" required>
+
+<input type="password" name="password" placeholder="Password" required>
+
+<br>
+
+<button type="submit">Add Teacher</button>
+
+</form>
+
+<h3>Teacher List</h3>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Username</th>
+<th>Action</th>
+</tr>
+
+{% for teacher in teachers %}
+
+<tr>
+
+<td>{{ teacher.id }}</td>
+<td>{{ teacher.username }}</td>
+
+<td>
+
+<a href="/delete_teacher/{{ teacher.id }}">
+<button class="delete">Delete</button>
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<a class="logout" href="/logout">Logout</a>
+
+</div>
+
+</body>
+
+</html>
